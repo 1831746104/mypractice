@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--将页面中的表单如果在移动设备上显示时，则将整个div的宽度设置为页面的100%；-->
+    <!--另当用户点击检查格式时，判断用户输入的内容格式是否正确以及是否为空，-->
+    <!--在出现错误时，将输入框颜色变红，并在输入框下方提示相关信息-->
+    <meta charset="utf-8">
+    <title>响应式设计表单</title>
+    <meta name="viewport" content="width=device-width" initial-scale=1.0,user-scalable=no maxinum-scale=1.0 minimum-scale=1.0>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            background: #c0c0c0;
+            text-align: center;
+        }
+        .formDiv {
+            display: inline-block;
+            border: 1px solid #ccc;
+            background: #fff;
+            border-radius: 10px;
+            text-align: center;
+            padding: 20px;
+            width: 360px;
+        }
+        .user {
+            display: inline-block;
+            width: 100%;
+            height: 26px;
+            padding: 3px 0;
+            font-size: 14px;
+            color: #555;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+        }
+        .checkBtn {
+            background-color: #337ab7;
+            padding: 5px 10px;
+            border: 1px solid #337ab7;
+            border-radius: 2px;
+            margin-top: 10px;
+            color: #fff;
+        }
+        .checkBtn:hover {
+            background-color: #2a6496;
+            border: 1px solid #2a6496;
+        }
+        .hint {
+            /*display: none;*/
+            color: red;
+            font-size: 12px;
+            padding: 6px;
+        }
+        @media only screen and (min-width: 480px) and (max-width: 767px) {
+            .formDiv {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="formDiv">
+    <input type="text" class="user" id="user" placeholder="请输入邮箱地址或手机号">
+    <span class="hint"> </span>
+    <button class="checkBtn" id="checkBtn" onclick="check()">检查格式<button>
+</div>
+</body>
+<script>
+    function validate(str){
+        var reg = /^[a-zA-Z0-9_-]+@[a-zA-Z0-9_-]+(\.[a-zA-Z0-9_-]+)+$|^1(3|4|5|7|8)\d{9}$/g;
+        return reg.test(str);
+    }
+    function check(){
+        var user = document.getElementById("user").value.trim();
+        var inp = document.getElementById("user");
+        var oSpan = document.getElementsByClassName("hint");
+        if (user) {
+            if (validate(user)) {
+                inp.style.border = "none";
+                oSpan[0].style.display = "block";
+                oSpan[0].innerText = "输入正确";
+            }else{
+                inp.style.border = "1px solid red";
+                oSpan[0].style.display = "block";
+                oSpan[0].innerText = "输入格式错误";
+            }
+        }else{
+            inp.style.border = "1px solid red";
+            oSpan[0].style.display = "block";
+            oSpan[0].innerText = "输入不能为空";
+        }
+    }
+</script>
+<html>

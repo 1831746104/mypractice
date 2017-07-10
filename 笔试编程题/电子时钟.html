@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>JS+div在页面指定位置显示一个电子时钟</title>
+    <script language="javascript">
+        <!--
+        function showClock()
+        {
+            d       = new Date();
+            hours   = d.getHours();
+            minutes = d.getMinutes();
+            seconds = d.getSeconds();
+            clck = (hours>=12)?"下午":"上午";
+            hours = (hours>12)?hours-12:hours;
+            hours = (hours<10)?"0"+hours:hours;
+            minutes = (minutes<10)?"0"+minutes:minutes;
+            seconds = (seconds<10)?"0"+seconds:seconds;
+            time = clck + " " + hours + ":" + minutes + ":" + seconds;
+            time = "<font size='5' face='Arial'><b>" + time + "</b></font>";
+            myclock.innerHTML = time;
+            setTimeout("showClock()",1000);
+        }
+        //-->
+    </script>
+</head>
+<body onLoad="showClock()">
+<div id="myclock" style="position:absolute;left:10px;top:150px;"></div>
+</body>
+</html>
